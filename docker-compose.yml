@@ -1,0 +1,37 @@
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/miniProject2
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 1234
+      SPRING_DATA_MONGODB_URI: mongodb://root:example@mongo:27017/miniProject2?authSource=admin
+      SPRING_DATA_MONGODB_DATABASE: miniProject2
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - mongo
+    restart: always
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: miniProject2
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: miniProject2
+    ports:
+      - "27017:27017"
