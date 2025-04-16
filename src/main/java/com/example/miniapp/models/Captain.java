@@ -13,8 +13,8 @@ public class Captain {
     private String licenseNumber;
     private Double avgRatingScore;
 
-//    @OneToMany(mappedBy = "captain", cascade = CascadeType.ALL)
-//    private List<Trip> trips = new ArrayList<>();
+    @OneToMany(mappedBy = "captain", cascade = CascadeType.ALL)
+    private List<Trip> trips = new ArrayList<>();
 
     public Captain() {
     }
@@ -57,11 +57,11 @@ public class Captain {
         this.avgRatingScore = avgRatingScore;
     }
 
-//    public List<Trip> getTrips() {
-//        return trips;
-//    }
-//
-//    public void setTrips(List<Trip> trips) {
-//        this.trips = trips;
-//    }
+    public List<Trip> getTrips() {
+        return trips;
+    }
+
+    public void setTrips(List<Trip> trips) {
+        this.trips = trips;
+    }
 }

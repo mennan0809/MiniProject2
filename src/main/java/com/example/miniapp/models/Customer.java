@@ -15,8 +15,8 @@ public class Customer {
     private String email;
     private String phoneNumber;
 
-//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Trip> trips = new ArrayList<>();
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Trip> trips = new ArrayList<>();
 
     public Customer() {
     }
@@ -26,7 +26,7 @@ public class Customer {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
-//        this.trips = trips;
+        this.trips = trips;
     }
 
     // Getters and Setters
@@ -63,12 +63,12 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
-//    public List<Trip> getTrips() {
-//        return trips;
-//    }
-//
-//    public void setTrips(List<Trip> trips) {
-//        this.trips = trips;
-//    }
+    public List<Trip> getTrips() {
+        return trips;
+    }
+
+    public void setTrips(List<Trip> trips) {
+        this.trips = trips;
+    }
 }
 
