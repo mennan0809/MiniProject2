@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "trips")  // Specify the custom table name
 public class Trip {
 
     @Id
@@ -26,13 +27,11 @@ public class Trip {
     public Trip() {
     }
 
-    public Trip(LocalDateTime tripDate, String origin, String destination, Double tripCost, Captain captain, Customer customer) {
+    public Trip(LocalDateTime tripDate, String origin, String destination, Double tripCost) {
         this.tripDate = tripDate;
         this.origin = origin;
         this.destination = destination;
         this.tripCost = tripCost;
-        this.captain = captain;
-        this.customer = customer;
     }
 
     // Getters and Setters

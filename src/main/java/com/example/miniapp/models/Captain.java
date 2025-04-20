@@ -2,7 +2,9 @@ package com.example.miniapp.models;
 
 import jakarta.persistence.*;
 import java.util.*;
+
 @Entity
+@Table(name = "captains")
 public class Captain {
 
     @Id

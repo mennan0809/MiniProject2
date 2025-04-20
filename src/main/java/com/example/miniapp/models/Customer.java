@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "customers")  // Specify the custom table name
 public class Customer {
 
     @Id
@@ -27,6 +28,13 @@ public class Customer {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.trips = trips;
+    }
+    public Customer(String name, String email, String phoneNumber) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.trips = new ArrayList<>();
     }
 
     // Getters and Setters
