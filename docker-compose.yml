@@ -9,6 +9,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: 1234
       SPRING_DATA_MONGODB_URI: mongodb://root:example@mongo:27017/miniProject2?authSource=admin
       SPRING_DATA_MONGODB_DATABASE: miniProject2
+
     ports:
       - "8080:8080"
     depends_on:
@@ -17,7 +18,7 @@ services:
     restart: always
 
   postgres:
-    image: postgres
+    image: postgres:latest
     restart: always
     environment:
       POSTGRES_DB: miniProject2
@@ -27,7 +28,7 @@ services:
       - "5432:5432"
 
   mongo:
-    image: mongo
+    image: mongo:latest
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
