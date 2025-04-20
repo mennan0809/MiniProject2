@@ -3,7 +3,9 @@ package com.example.miniapp.services;
 import com.example.miniapp.models.Trip;
 import com.example.miniapp.repositories.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -46,9 +48,6 @@ public class TripService {
     }
 
     public void deleteTrip(Long id) {
-        if (!tripRepository.existsById(id)) {
-            throw new IllegalArgumentException("Trip with ID " + id + " does not exist");
-        }
         tripRepository.deleteById(id);
     }
 

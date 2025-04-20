@@ -4,11 +4,14 @@ import com.example.miniapp.models.Trip;
 import com.example.miniapp.services.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -47,15 +50,15 @@ public class TripController {
         tripService.deleteTrip(id);
         return "Trip with ID " + id + " deleted successfully.";
     }
-
     @GetMapping("/findByDateRange")
     public List<Trip> findTripsWithinDateRange(
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate
-    ) {
-        LocalDateTime startDateTime = startDate.atStartOfDay();
-        LocalDateTime endDateTime = endDate.atTime(LocalTime.MAX);
-        return tripService.findTripsWithinDateRange(startDateTime, endDateTime);
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSS") LocalDateTime startDate,
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSS") LocalDateTime endDate) {
+
+        if (startDate.isAfter(endDate)) {
+            return Collections.emptyList();
+        }
+        return tripService.findTripsWithinDateRange(startDate, endDate);
     }
 
     @GetMapping("/findByCaptainId")
