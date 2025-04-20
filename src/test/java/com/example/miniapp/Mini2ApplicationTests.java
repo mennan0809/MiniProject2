@@ -149,7 +149,6 @@ class Mini2ApplicationTests {
 	}
 	@Test
 	public void testControllerAddCaptain() {
-		System.out.println("PATHHH" + CaptainPath);
 		Captain newCaptain = new Captain("John Doe", "54321", 4.5);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
